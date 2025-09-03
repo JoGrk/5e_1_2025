@@ -1,0 +1,44 @@
+/* Plik weterynarz.css zawiera formatowanie dla:
+
+- Banera: kolor RGB tła (105, 88, 89), biały kolor czcionki, rozmiar czcionki 150%, wyrównanie tekstu do środka, wysokość 80 px
+
+- Panelu lewego: kolor RGB tła (145, 127, 112), szerokość 30%, wysokość 600 px 
+
+- Panelu środkowego: kolor RGB tła (184, 168, 169), szerokość 50%, wysokość 600 px
+
+- Panelu prawego: kolor RGB tła (145, 127, 112), szerokość 20%, wysokość 600 px */
+
+header{
+    background-color: rgb(105, 88, 89);
+    color: white;
+    font-size: 150%;
+    text-align: center;
+    height: 80px;
+}
+.left{
+    background-color: rgb(145, 127, 112);
+    width: 30%;
+    height: 600px;
+}
+.middle{
+    background-color: rgb(184, 168, 169);
+    width: 50%;
+    height: 600px;
+}
+.right{
+    background-color: rgb(145, 127, 112);
+    width: 20%;
+    height: 600px;
+}
+h2{
+    color: white;
+}
+img{
+    float: right;
+}
+table,td{
+    border: 1px solid;
+}
+main{
+    display: flex;
+}
