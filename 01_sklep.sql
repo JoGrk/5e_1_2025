@@ -1,4 +1,5 @@
-create database 5e_1_sklepkomputerowy
+create database 5e_1_sklepkomputerowy;
+use 5e_1_sklepkomputerowy;
 -- Producenci
 --  kod całkowity, klucz podstawowy, autoinkrementacja
 -- nazwa  tekst, pole nie może być puste
@@ -124,18 +125,66 @@ JOIN producenci ON producenci.kod = produkty.producent;
 
 -- 12. Wyświetl średnią cenę produktów każdego producenta, pokazując tylko kod producenta
 
+SELECT AVG(cena) , producent
+FROM produkty
+GROUP BY producent;
+
+
 -- 13. Wyświetl średnią cenę produktów każdego producenta, pokazując nazwę producenta 
-
+SELECT AVG(cena) , producenci.nazwa
+FROM produkty
+JOIN producenci on producenci.kod=produkty.producent
+GROUP BY producent;
 -- 14. Wyświetl nazwę każdego producenta, którego produkty mają średnią cenę większą lub równą $150
-
+SELECT AVG(cena) , producenci.nazwa
+FROM produkty
+JOIN producenci on producenci.kod=produkty.producent
+GROUP BY producent
+HAVING AVG(cena) >=150;
 -- 15. Wyświetl nazwę i cenę najtańszego produktu  (LIMIT lub podzapytanie)
+SELECT cena, nazwa
+FROM produkty
+ORDER BY cena 
+LIMIT 1;
 
+INSERT INTO produkty
+(nazwa,cena,producent)
+VALUES
+('RAM',5,2);
+
+SELECT min(cena)
+FROM produkty;
+
+SELECT cena, nazwa
+FROM produkty
+WHERE cena = (SELECT min(cena)
+FROM produkty);
 -- 16.Wyświetl nazwę każdego producenta razem z nazwą i ceną jego najdroższego produktu 
 
+SELECT producenci.nazwa, produkty.nazwa, cena,produkty.producent
+FROM produkty
+    INNER JOIN producenci ON producenci.kod = produkty.producent
+WHERE cena=(SELECT MAX(cena) 
+            FROM produkty p
+            WHERE p.producent=produkty.producent);
+
+
 -- 17. Dodaj nowy produkt:  Loudspeakers, $70, producent 2.
-
+INSERT INTO produkty
+(nazwa,cena,producent)
+VALUES
+('Loudspeakers',70,2);
 -- 18. Zmień nazwę produktu o kodzie 8 na "Laser Printer".
+UPDATE produkty
+SET nazwa = 'Laser Printer'
+WHERE kod = 8;
 
--- 19. Wykonaj 10% przecenę każdego produktu 
+-- 19. Wykonaj 10% przecenę każdego produktu
+
+UPDATE produkty
+SET cena = cena*0.90;
 
 -- 20. Wykonaj 10% przecenę każdego produktu o cenie większej lub równiej $120.
+UPDATE produkty
+SET cena = cena*0.90
+WHERE cena >= 120;
