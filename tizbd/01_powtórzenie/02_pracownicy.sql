@@ -142,12 +142,26 @@ VALUES
 
 -- 18. Zmniejsz budżet wszystkich działów o 10%.
 UPDATE dzialy
-SET 
+SET budzet = budzet*0.9; 
 
 -- 19. przenieś pracowników z działu Research  do działu IT  .
 
+UPDATE pracownicy
+SET dzial = (SELECT kod FROM dzialy WHERE nazwa='IT')
+WHERE dzial = (SELECT kod FROM dzialy WHERE nazwa='Research');
+
 -- 20. Usuń wszystkich pracowników pracujących w dziale   IT.
-
+DELETE FROM pracownicy
+WHERE dzial = (SELECT kod 
+FROM dzialy
+WHERE nazwa = "IT");
 -- 21. Usuń wszystkich pracowników, którzy pracują w działach z budżetem większym bądź równym $60,000 (60 tysięcy)
+DELETE FROM pracownicy
+WHERE dzial IN (SELECT kod
+FROM dzialy
+WHERE budzet >= 60000);
+-- 22. Usuń wszystkie dzialy
+DELETE FROM dzialy;
 
--- 22. Usuń wszystkich pracowników
+UPDATE pracownicy
+SET dzial = NULL;
