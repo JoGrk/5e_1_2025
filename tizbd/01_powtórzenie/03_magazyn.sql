@@ -91,7 +91,7 @@ GROUP BY magazyn;
 
 SELECT COUNT(kontenery.kod), magazyny.kod
 FROM kontenery
-RIGHT JOIN magazyny ON magazyny.kod = kontenery.magazyn
+            RIGHT JOIN magazyny ON magazyny.kod = kontenery.magazyn
 GROUP BY magazyn;
 
 -- Wskazówka: wybierz kod magazynu z tabeli magazyny oraz policz kod z tabeli Kontenery; dane wybieraj z dwóch tabel połączonych połączeniem rozszerzającym (LEFT JOIN lub RIGHT JOIN), z rozszerzanej strony powinna być tabela Magazyny (wybieramy wszystkie magazyny, także te, w których nie ma kontenerów); grupowanie według kodu magazynu
@@ -102,7 +102,9 @@ GROUP BY magazyn;
 
 -- 10.  Wyświetl kody wszystkich magazynów, które są przeładowane (magazyn jest przeładowany, jeśli liczba zawartych w nim kontenerów jest większa niż jego pojemność)  (zrzut)
 
- 
+SELECT kod 
+FROM magazyny
+WHERE pojemnosc >  
 
 -- np. wyświetl kody tych magazynów (z tabeli Magazyny), których pojemność jest mniejsza niż
 
