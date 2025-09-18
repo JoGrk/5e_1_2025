@@ -104,7 +104,9 @@ GROUP BY magazyn;
 
 SELECT kod 
 FROM magazyny
-WHERE pojemnosc >  
+WHERE pojemnosc < (SELECT COUNT(kontenery.kod)
+                    FROM kontenery
+                    WHERE magazyn = magazyny.kod);
 
 -- np. wyświetl kody tych magazynów (z tabeli Magazyny), których pojemność jest mniejsza niż
 
@@ -113,18 +115,39 @@ WHERE pojemnosc >
 
 -- 11. Wyświetl kody wszystkich kontenerów zlokalizowanych w Chicago wraz z lokalizacją i pojemnością magazynów . Uwzględnij w zestawieniu także te magazyny z Chicago, w których nie ma aktualnie kontenerów  (zrzut)
 
-   
+SELECT kontenery.kod, Lokalizacja, pojemnosc
+FROM Kontenery
+    RIGHT JOIN magazyny ON magazyny.kod = kontenery.magazyn
+WHERE lokalizacja = 'Chicago';
 
 -- lub zastosuj podzapytanie (wyświetl kody kontenerów, dla których kod magazynu (magazyn) jest na liście (IN) kodów magazynów zlokalizowanych w Chicago. 
 
 -- 12. Utwórz nowy magazyn w Nowym Yorku z pojemnością 3 kontenerów.   (zrzut)
-
+INSERT INTO magazyny
+VALUES
+(7,'Nowy York',3);
 -- 13. Utwórz nowy kontener, z kodem "H5RT",  zawierającym "Papers" z wartością $200 i zlokalizowany w magazynie o kodzie 2.  (zrzut)
 
+INSERT INTO kontenery
+VALUES 
+('H5RT','Papers',200,2);
+
 -- 14. Zmniejsz wartość wszystkich kontenerów o 15%.  (zrzut)
+UPDATE kontenery
+SET wartosc = wartosc*0.85;
 
 -- 15 Usuń wszystkie kontenery o wartości mniejszej niż $100.  (zrzut)
-
+DELETE FROM kontenery
+WHERE wartosc<100;
 -- 16. Usuń wszystkie kontenery z przeładowanych magazynów.   (zrzut)
 
 -- usuń wszystkie kontenery, których kod jest na liście (IN) kodów przeładowanych magazynów (tę wartość zwraca zapytanie nr. 10)
+
+DELETE FROM kontenery
+WHERE magazyn IN (
+                SELECT kod 
+                FROM magazyny
+                WHERE pojemnosc < (SELECT COUNT(kontenery.kod)
+                    FROM kontenery
+                    WHERE magazyn = magazyny.kod)
+);
