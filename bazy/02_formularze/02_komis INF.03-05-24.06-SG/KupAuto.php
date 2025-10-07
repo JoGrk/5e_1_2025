@@ -1,5 +1,18 @@
 <?php
 $link = new mysqli('localhost','root','','5e_1_komis');
+
+$brand_f = $_POST['brand'] ?? NULL;
+
+if($brand_f){
+    $sql="SELECT model, cena, zdjecie
+    FROM samochody 
+    JOIN marki ON marki.id = samochody.marki_id
+    WHERE nazwa = '$brand_f';";
+    $result = $link -> query($sql);
+    $selections = $result -> fetch_all(1);
+}
+
+
 $sql="SELECT model, rocznik, przebieg, paliwo, cena, zdjecie
 FROM samochody
 WHERE id=10;";
@@ -12,7 +25,13 @@ WHERE wyrozniony = 1
 LIMIT 4;";
 $result = $link -> query($sql);
 $offers = $result -> fetch_all(1);
+
+$sql = "SELECT nazwa
+FROM marki;";
+$result = $link -> query($sql);
+$brands = $result -> fetch_all(1);
 ?>
+
 
 <!DOCTYPE html>
 <html lang="pl">
@@ -71,11 +90,37 @@ $offers = $result -> fetch_all(1);
         <h2>Wybierz marke</h2>
       <form action="" method="post">
         <select name="brand" id="brand">
-            <!-- skyrpt3 -->
+            <!-- skrypt3 -->
+            <?php
+                foreach($brands as $brand)
+                {
+                    echo "<option value='{$brand['nazwa']}'>{$brand['nazwa']}</option>";
+                }
+            ?>
+            <!-- <option value="jeden">jeden</option> -->
         </select>
         <button type="submit">Wyszukaj</button>
       </form>
       <!-- skrypt4 -->
+       <!-- <section class="offer">
+        <img src="['zdjecie']" alt="['model']">
+        <h4>$brand_f ['model'] </h4>
+        <h4>Cena:['cena']</h4>
+       </section> -->
+       <div class='flex'>
+        <?php
+            if($brand_f){
+                foreach($selections as $selection){
+                   echo"
+                   <section class='offer'>
+                    <img src='{$selection['zdjecie']}' alt='{$selection['model']}'>
+                     <h4>$brand_f {$selection['model']} </h4>
+                         <h4>Cena:{$selection['cena']}</h4>
+                    </section>"; 
+                }
+            }
+        ?>
+        </div>
     </section>
     
     <footer>

@@ -1,0 +1,47 @@
+body{
+    font-family: Tahoma;
+}
+.banner-left,.banner-right{
+    background-color: #003d33;
+    color: white;
+    height: 50px;
+    text-align: center;
+}
+.banner-left{
+    width: 70%;
+}
+.banner-right{
+    width: 30%;
+}
+.main-left{
+    background-color: #26a69a;
+    height: 550px;
+    width: 30%;
+}
+.main-right{
+    background-color: #26a69a;
+    height: 550px;
+    width: 70%;
+}
+header,main{
+    display: flex;
+}
+footer{
+    background-color: #003d33;
+    color: white;
+}
+.profile{
+    width: 400px;
+    margin: 30px;
+    text-align: center;
+    border: 1px solid #003d33 ;
+}
+.profile button{
+    background-color: #003d33;
+    color: white;
+    height: 30px;
+    border: none;
+}
+.profile button:hover{
+    background-color: #004c40;
+}
