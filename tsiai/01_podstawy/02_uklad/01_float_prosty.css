@@ -1,0 +1,17 @@
+nav{
+    height: 500px;
+    width: 40%;
+    float: left;
+    background-color: aquamarine;
+}
+main{
+    height: 500px;
+    width: 60%;
+    float: right;
+    background-color: blanchedalmond;
+}
+footer{
+    height: 150px;
+    clear: both;
+    background-color: hotpink;
+}

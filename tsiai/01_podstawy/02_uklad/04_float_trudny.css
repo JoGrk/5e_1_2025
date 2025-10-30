@@ -1,0 +1,26 @@
+
+nav{
+    height: 300px;
+    width: 40%;
+    background-color: chocolate;
+    float: left;
+    
+}
+aside{
+    height: 200px;
+    width: 40%;
+    background-color: brown;
+    float:left;
+    
+}
+main{
+    height: 500px;
+    width: 60%;
+    background-color: gainsboro;
+    float: right;
+}
+footer{
+    height: 150px;
+    background-color: papayawhip;
+    clear:both;
+}

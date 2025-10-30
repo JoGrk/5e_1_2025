@@ -1,0 +1,28 @@
+body{
+    display: grid;
+    grid-template-columns: 40% 60%;
+    grid-template-areas: 
+        'nav main'
+        'aside main'
+        'ft ft';
+}
+nav{
+    background-color: aqua;
+    height: 300px;
+    grid-area: nav;
+}
+main{
+    background-color: purple;
+    height: 500px;
+    grid-area: main;
+}
+aside{
+    background-color: greenyellow;
+    height: 200px;
+    grid-area: aside;
+}
+footer{
+    background-color: blue;
+    height: 150px;
+    grid-area: ft;
+}

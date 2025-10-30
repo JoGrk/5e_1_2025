@@ -1,0 +1,22 @@
+body{
+    display: grid;
+    grid-template-columns: 40% 60%;
+    grid-template-areas: 
+        'nav main'
+        'ft ft';
+}
+nav{
+    grid-area: nav;
+    background-color: green;
+    height: 500px ;
+}
+main{
+    grid-area: main;
+    background-color: greenyellow;
+    height: 500px;
+}
+footer{
+    grid-area: ft;
+    background-color: lightgreen;
+    height: 200px;
+}
