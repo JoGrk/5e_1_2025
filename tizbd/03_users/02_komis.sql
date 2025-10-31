@@ -43,12 +43,18 @@ REVOKE DELETE, UPDATE ON 5e_1_komis.handlowcy FROM 'uczendba'@'localhost';
 CREATE USER 'jeden_1';
 CREATE USER 'dwa_1';
 --  A. Nadaj uprawnienia wprowadzania, zmiany i usuwania danych w całej bazie komis dla użytkownika jeden
-GRANT INSERT, UPDATE, DELETE ON 5e_1_komis TO 'jeden_1';
+GRANT INSERT, UPDATE, DELETE ON 5e_1_komis.* TO 'jeden_1';
 -- B. nadaj wszystkie uprawnienia do tabeli Auta użytkownikowi dwa
 GRANT ALL ON 5e_1_komis.auta TO 'dwa_1';
 -- C. odbierz użytkownikowi jeden prawa usuwania danych 
+REVOKE DELETE ON 5e_1_komis.* FROM 'jeden_1';
 -- D. odbierz wszystkie uprawnienia użytkownikowi dwa do tabeli Auta
+revoke all on 5e_1_komis.auta from 'dwa_1';
 -- 6. 
 -- A. Zaloguj się jako użytkownik jeden i ustaw hasło 'zaq1@WSX'
+mysql -u jeden_1
+SET PASSWORD = PASSWORD('zaq1@WSX');
 -- B. Ustaw hasło dla użytkownika dwa na 'zaq1@WSX'
+SET PASSWORD FOR dwa_1 = PASSWORD('zaq1@WSX');
 -- C. z poziomu konta root zmień hasło dla użytkownika jeden na 'haslo'
+SET PASSWORD FOR jeden_1 = PASSWORD('haslo');
