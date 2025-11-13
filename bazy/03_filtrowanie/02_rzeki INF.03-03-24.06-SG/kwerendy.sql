@@ -21,4 +21,4 @@ WHERE dataPomiaru='2022-05-05' AND stanWody > stanOstrzegawczy;
 
 SELECT dataPomiaru, AVG(stanWody) as sredni_stan
 FROM pomiary
-GROUP BY stanWody;
+GROUP BY dataPomiaru;

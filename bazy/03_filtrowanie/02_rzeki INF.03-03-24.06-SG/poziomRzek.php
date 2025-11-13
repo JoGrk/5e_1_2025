@@ -23,6 +23,14 @@
     }
     $result = $link -> query($sql);
     $levels = $result -> fetch_all(1);
+
+
+    $sql="
+SELECT dataPomiaru, AVG(stanWody) as sredni_stan
+FROM pomiary
+GROUP BY dataPomiaru;";
+$result=$link->query($sql);
+$stany=$result->fetch_all(1);
 ?>
 <!DOCTYPE html>
 <html lang="pl">
@@ -66,15 +74,17 @@
                     <th>Alarmowy</th>
                     <th>Aktualny</th>
                 </tr>
-                <tr>
-                    <td>[nazwa]</td>
-                    <td>[rzeka]</td>
-                    <td></td>
-                </tr>
+                
 
                 <?php 
                     foreach($levels as $level){
-                        echo"";
+                        echo"<tr>
+                                <td>{$level['nazwa']}</td>
+                                <td>{$level['rzeka']}</td>
+                                <td>{$level['stanOstrzegawczy']}</td>
+                                <td>{$level['stanAlarmowy']}</td>
+                                <td>{$level['stanWody']}</td>
+                            </tr>";
                     }
                 ?>
                 
@@ -90,7 +100,12 @@
                 <li>Silny wiatr w Karkonoszach</li>
             </ul>
             <h3>Średnie stany wód</h3>
-            <!-- skrypt2 -->
+            <?php
+            foreach($stany as $stan){
+                echo"<p>{$stan['dataPomiaru']}: {$stan['sredni_stan']}</p>";
+            }
+
+            ?>
             <a href="https://komunikaty.pl">Dowiedz się więcej</a>
             <img src="obraz2.jpg" alt=Rzeka">
         </section>
