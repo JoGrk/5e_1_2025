@@ -1,3 +1,24 @@
+<?php
+$link = new mysqli('localhost','root','','5e_1_smoki');
+
+$origin_f=$_POST['origin_f'] ?? NULL;
+if($origin_f){
+    $sql="SELECT nazwa,dlugosc,szerokosc
+            FROM smok
+            WHERE pochodzenie ='$origin_f'";
+    $result=$link->query($sql);
+    $dragons=$result->fetch_all(1);
+}
+
+
+
+$sql="SELECT DISTINCT pochodzenie
+FROM smok
+ORDER BY pochodzenie;";
+$result=$link->query($sql);
+$origins=$result->fetch_all(1);
+?>
+
 <!DOCTYPE html>
 <html lang="pl">
 <head>
@@ -5,6 +26,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Smoki</title>
     <link rel="stylesheet" href="styl.css">
+    <script src="main.js"defer></script>
 </head>
 <body>
     <header>
@@ -21,8 +43,12 @@
         <section class="first">
             <h3>Baza Smoków</h3>
             <form action="" method="post">
-                <select name="origin" id="origin">
-                    <!-- <option value="1">1</option> skrypt1 -->
+                <select name="origin_f" id="origin_f">
+                    <?php
+                        foreach($origins as $origin){
+                            echo "<option>{$origin['pochodzenie']}</option>";
+                        }
+                    ?>
                 </select>
                 <button>Szukaj</button>
             </form>
@@ -32,11 +58,17 @@
                     <th>Długość</th>
                     <th>Szerokość</th>
                 </tr>
-                <!-- <tr>
-                    <td></td>
-                    <td></td>
-                    <td></td> skrypt2
-                </tr> -->
+                <?php
+                if($origin_f){
+                foreach($dragons as $dragon){
+                    echo"<tr>
+                    <td>{$dragon['nazwa']}</td>
+                    <td>{$dragon['dlugosc']}</td>
+                    <td>{$dragon['szerokosc']}</td> 
+                </tr>";
+                }
+                }
+                ?>
             </table>
         </section>
 

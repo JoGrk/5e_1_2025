@@ -9,6 +9,7 @@ header, footer{
 }
 nav{
     width: 20%;
+    float: left;
 }
 nav div{
     background-color: #FFAEA5;
@@ -23,6 +24,7 @@ main{
     width: 80%;
     height: 510px;
     overflow: auto;
+    float: left;
 }
 section.second, section.third{
     display: none;
@@ -41,4 +43,7 @@ dt{
 }
 dt:hover{
     font-size: 180%;
+}
+footer{
+    clear: both;
 }
