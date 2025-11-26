@@ -10,8 +10,6 @@ if($origin_f){
     $dragons=$result->fetch_all(1);
 }
 
-
-
 $sql="SELECT DISTINCT pochodzenie
 FROM smok
 ORDER BY pochodzenie;";
@@ -26,7 +24,7 @@ $origins=$result->fetch_all(1);
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Smoki</title>
     <link rel="stylesheet" href="styl.css">
-    <script src="main.js"defer></script>
+    <script src="./main.js" defer></script>
 </head>
 <body>
     <header>
@@ -67,7 +65,7 @@ $origins=$result->fetch_all(1);
                     <td>{$dragon['szerokosc']}</td> 
                 </tr>";
                 }
-                }
+            }
                 ?>
             </table>
         </section>
@@ -97,3 +95,6 @@ $origins=$result->fetch_all(1);
     </footer>
 </body>
 </html>
+<?php
+$link->close();
+?>
