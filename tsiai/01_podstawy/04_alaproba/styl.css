@@ -1,0 +1,46 @@
+*{
+    margin:0;
+    box-sizing: border-box;
+}
+body{
+    display: grid;
+    grid-template-columns: 25% 50% 25%;
+    grid-template-areas:
+    'nav header header'
+    'nav main aside';
+}
+nav{
+    grid-area: nav;
+    background-color: lightgrey;
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 2rem;
+}
+header{
+    height: 15vh;
+    background-color: beige;
+    grid-area: header;
+}
+main{
+    height: 85vh;
+   
+    grid-area: main;
+    padding: 3rem;
+    background-color: aliceblue;
+}
+aside{
+    height: 85vh;
+  
+     background-color: rgb(250, 240, 228);
+    grid-area: aside;
+}
+nav img{
+    width: 100px;
+}
+.border{
+    box-shadow: 5px 5px 10px rgba(30, 30, 30, 0.8);
+    border-radius: 10px;
+}
