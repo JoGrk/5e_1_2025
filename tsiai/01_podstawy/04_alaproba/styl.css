@@ -26,10 +26,10 @@ header{
 }
 main{
     height: 85vh;
-   
     grid-area: main;
     padding: 3rem;
     background-color: aliceblue;
+    overflow: scroll;
 }
 aside{
     height: 85vh;
@@ -43,4 +43,11 @@ nav img{
 .border{
     box-shadow: 5px 5px 10px rgba(30, 30, 30, 0.8);
     border-radius: 10px;
+}
+main img{
+    width: 300px;
+
+}
+aside span{
+    display: none;
 }
