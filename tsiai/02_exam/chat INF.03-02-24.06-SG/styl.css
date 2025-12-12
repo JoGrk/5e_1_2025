@@ -1,0 +1,70 @@
+*{
+    font-family: Garamond;
+}
+body{
+    display: grid;
+    grid-template-columns: 80% 20%;
+    grid-template-areas: 
+    'header aside'
+    'main aside'
+    'footer footer';
+}
+header{
+    background-color: Tomato;
+    color: white;
+    text-align: center;
+    height: 80px;
+    grid-area: header;
+}
+main{
+    height: 600px;
+    grid-area: main;
+}
+aside{
+    background-color: Coral;
+    height: 680px;
+    grid-area: aside;
+}
+footer{
+    background-color: Tomato;
+    color: white;
+    text-align: center;
+    grid-area: footer;
+}
+img{
+    border-radius: 50%;
+    padding: 0 10px;
+}
+.chat{
+    border: 1px solid Tomato;
+    margin: 15px;
+    height: 470px;
+    overflow: scroll;
+}
+.message{
+    border-radius: 5px;
+    width: 90%;
+    height: 70px;
+    margin: 2%;
+    padding: 3px;
+    display: flex;
+}
+.jolanta{
+    background-color: #EEE;
+    float: left;
+}
+.krzysztof{
+    background-color: #CCC;
+    flex-direction: row-reverse;
+    text-align: right;
+    float: right;
+}
+button{
+    background-color: Tomato;
+    border: 1px solid DarkRed;
+    padding: 5px;
+    font-weight: bold;
+}
+input[type="text"]{
+    width: 500px;
+}
